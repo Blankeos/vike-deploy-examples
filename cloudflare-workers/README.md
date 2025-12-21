@@ -10,6 +10,16 @@ Reference: https://vike.dev/cloudflare-pages
 bun add wrangler @photonjs/cloudflare
 ```
 
+- Install rollup linux bindings (If you're on Mac or Windows)
+
+```sh
+# Undocumented... Since cloudflare builds your app inside a linux machine technically, it needs linux bindings.
+# But your lockfile won't have the linux bindings because you're on mac. This adds it to "optionalDependencies".
+bun add @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu --optional
+
+# If you don't do this, you might get a Error: Cannot find module @rollup/rollup-linux-x64-gnu. /node_modules/rollup/dist/native.js:64
+```
+
 - Script changes
 
 ```diff
@@ -33,7 +43,7 @@ bun add wrangler @photonjs/cloudflare
 ```sh
 # 💡 Remember that these commands are shell-level, not package manager level (meaning `bun run` is needed for package.json scripts)
 # Build command:
-bun install --no-frozen-lockfile && bun run vike build
+bun run vike build
 # Deploy command:
 npx wrangler deploy # this is default
 ```
