@@ -24,14 +24,14 @@
     "vite-tsconfig-paths": "^6.0.3"
   },
   "dependencies": {
-    "@photonjs/hono": "^0.1.11",
+    "@photonjs/hono": "^0.1.12",
     "@photonjs/vercel": "^0.1.22",
     "h3": "^2.0.1-rc.6",
     "hono": "^4.11.1",
     "solid-js": "1.9.10",
     "vike": "^0.4.249",
     "vike-metadata-solid": "^1.0.4",
-    "vike-photon": "^0.1.23",
+    "vike-photon": "^0.1.24",
     "vike-solid": "^0.7.14"
   }
 }

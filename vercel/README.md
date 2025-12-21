@@ -2,20 +2,20 @@
 
 Reference: https://vike.dev/vercel
 
-1. Changes since template
+## 1. Changes since template
+
+- Install
 
 ```sh
 bun add @photonjs/vercel
-bun add h3 # This was necessary unfortunately
+bun add h3 # This was necessary, but (unfortunately) not documented
 ```
 
-(Yes, no code changes)
+- Good-to-know: `bun run build` creates `.vercel/output`
+- Gitignored `.vercel/`
+- No code changes. Works automatically. That's it 🎉
 
-You will also notice doing `bun run build` creates `.vercel/output`
-
-That's it.
-
-2. Notes on the platform.
+## 2. Platform Notes
 
 - Framework Preset: Vite (auto-detected)
-- Other than that, no need to change anything. It works automatically.
+- Other than that, no need to change anything. Just deploy
