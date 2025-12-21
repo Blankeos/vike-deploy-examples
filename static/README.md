@@ -1,6 +1,6 @@
 # static miniguide
 
-Reference: https://vike.dev/cloudflare-pages | https://vike.dev/github-pages | https://vike.dev/netlify
+Reference: https://vike.dev/cloudflare-pages | https://vike.dev/netlify | https://vike.dev/github-pages
 
 ## 1. Changes since template
 
@@ -33,7 +33,7 @@ export default {
 
 ## 2. Platform Notes
 
-### Cloudflare
+### 🟠 Cloudflare
 
 - 'Create Application' (Find "Looking to deploy Pages? Get started")
 - Build settings
@@ -41,18 +41,34 @@ export default {
 ```sh
 # Framework preset:
 None
+
 # Build command:
 bun run build
+
 # Build output directory:
 dist/client
+
 # Advanced > Root (If monorepo)
-subfolder/path
+subfolder/path # replace with actual relative path
 ```
 
-### Netlify
+### 🟢 Netlify
 
-- ???
+- Add new Project
+- Build settings
 
-###
+```sh
+# Base directory (If mono repo)
+subfolder/path # replace with actual relative pathh
 
-- ???
+# Build command
+bun run build
+
+# Publish directory
+dist/client
+```
+
+### 🤖 GitHub Pages
+
+- Create a `.github/workflows/deployment.yml`
+- Just use `actions/configure-pages@v4`, and upload `dist/client` (`actions/upload-pages-artifact@v3`), and deploy (`actions/deploy-pages@v4`).
