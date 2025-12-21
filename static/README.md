@@ -45,6 +45,8 @@ None
 bun run build
 # Build output directory:
 dist/client
+# Advanced > Root (If monorepo)
+subfolder/path
 ```
 
 ### Netlify
