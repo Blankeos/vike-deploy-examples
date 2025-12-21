@@ -1,11 +1,15 @@
 # vercel miniguide
 
+Reference: https://vike.dev/vercel
+
 1. Changes since template
 
 ```sh
 bun add @photonjs/vercel
 bun add h3 # This was necessary unfortunately
 ```
+
+(Yes, no code changes)
 
 You will also notice doing `bun run build` creates `.vercel/output`
 
