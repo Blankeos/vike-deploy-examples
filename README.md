@@ -1,3 +1,5 @@
+# 💎 Vike Deploy Examples
+
 This repo demonstrates the deployability of Vike template across different hosting providers with what I consider 'essentials' in a Vike app (Same feature parities w/ NextJS, SolidStart, SvelteKit, etc.)
 
 Treat this as a learn-by-example repo of the **vike.dev Deploy docs**
