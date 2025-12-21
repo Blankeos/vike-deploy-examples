@@ -28,7 +28,8 @@ It specifically uses [solid-hop](https://github.com/blankeos/solid-hop). In orde
 
 **Traditional**
 
-- [ ] Docker (Dokploy or Coolify)
+- [x] Docker (Dokploy or Coolify or Railway)
+- [ ] Buildpacks / Nixpacks (Railway, Heroku, etc)
 
 ### Maintenance
 
