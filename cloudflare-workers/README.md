@@ -33,7 +33,7 @@ bun add wrangler @photonjs/cloudflare
 ```sh
 # 💡 Remember that these commands are shell-level, not package manager level (meaning `bun run` is needed for package.json scripts)
 # Build command:
-bun run vike build
+bun install --no-frozen-lockfile && bun run vike build
 # Deploy command:
 npx wrangler deploy # this is default
 ```
