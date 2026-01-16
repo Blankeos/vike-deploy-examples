@@ -15,14 +15,14 @@ It specifically uses [solid-hop](https://github.com/blankeos/solid-hop). In orde
 **Static**
 
 - [x] Static (Cloudflare Pages, Netlify, GitHub Pages) - decided to combine this, they are the same, just read the miniguide. Note that this has no backend.
-  - Cloudflare: https://vike-deploy-examples.pages.dev
-  - Netlify: https://vike-deploy-examples.netlify.app
-  - GitHub Pages: https://blankeos.github.io/vike-deploy-examples (WIP)
+  - [x] Cloudflare Pages: https://vike-deploy-examples.pages.dev
+  - [x] Netlify: https://vike-deploy-examples.netlify.app
+  - [ ] GitHub Pages: https://blankeos.github.io/vike-deploy-examples (WIP)
 
 **Serverless**
 
 - [x] Vercel - (-)
-- [ ] Cloudflare Workers - (https://vike-deploy-examples.carloantonioct.workers.dev)
+- [x] Cloudflare Workers - (https://vike-deploy-examples.carloantonioct.workers.dev)
 - [ ] ~AWS Lambda~ (Unplanned)
 - [ ] Netlify Function
 
