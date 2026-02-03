@@ -17,7 +17,7 @@ export default {
 } satisfies Config
 ```
 
-- Script changes (Just regular node)
+- Script changes (Just regular node, very important!)
 
 ```diff
 // package.json
@@ -72,3 +72,13 @@ dist/client
 
 - Create a `.github/workflows/deployment.yml`
 - Just use `actions/configure-pages@v4`, and upload `dist/client` (`actions/upload-pages-artifact@v3`), and deploy (`actions/deploy-pages@v4`).
+
+### Known Troubleshooting
+
+<details>
+<summary> Cloudflare: error: [vike][Wrong Usage] Node.js 22.6.0 isn't supported, use Node.js 20.19.0, 22.12.0, 23.0.0, or above. </summary>
+
+Fix: ensure your build command does **not** use `bunx --bun vike build`.  
+Use plain `bun run build` (which runs `vike build` under the hood) so the system Node.js version is respected.
+
+</details>
