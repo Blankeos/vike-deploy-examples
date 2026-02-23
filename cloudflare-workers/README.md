@@ -7,17 +7,14 @@ Reference: https://vike.dev/cloudflare-pages
 - Install
 
 ```sh
-bun add wrangler @photonjs/cloudflare
+bun add wrangler @photonjs/cloudflare @cloudflare/vite-plugin
+bun add -d esbuild@0.27.3
 ```
 
-- Install rollup linux bindings (If you're on Mac or Windows)
+- Install rollup linux bindings (if you're on macOS or Windows)
 
 ```sh
-# Undocumented... Since cloudflare builds your app inside a linux machine technically, it needs linux bindings.
-# But your lockfile won't have the linux bindings because you're on mac. This adds it to "optionalDependencies".
-bun add @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu --optional
-
-# If you don't do this, you might get a Error: Cannot find module @rollup/rollup-linux-x64-gnu. /node_modules/rollup/dist/native.js:64
+bun add --optional @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu
 ```
 
 - Script changes
@@ -30,32 +27,64 @@ bun add @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu --optional
 + "build": "vike build",
 ```
 
-- Added `wrangler.jsonc` [(see)](/wrangler.jsonc) - VERY IMPORTANT
+- Added `wrangler.jsonc` [(see)](/wrangler.jsonc)
+- Keep Runtime settings in dashboard matching `wrangler.jsonc` (`compatibility_date`, `compatibility_flags`)
+- Keep `esbuild` pinned for stable CI installs:
 
-```jsonc
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "compatibility_date": "2026-01-20", // Make sure this matches your Settings > Runtime > Compatibility Date
-  "name": "vike-deploy-examples", // I think this can be anything
-  "main": "virtual:photon:cloudflare:server-entry",
-  // Only required if your app (or one of your libraries) uses a Node.js API
-  "compatibility_flags": ["nodejs_compat"],
+```json
+"overrides": {
+  "esbuild": "0.27.3"
 }
 ```
 
-- Gitignored `.wrangler/`
 - Good-to-know: `bun run build` creates `dist/server/wrangler.json` and `.wrangler`
-- That's it. 🎉
+- That's it 🎉
 
 ## 2. Platform Notes
 
-- 'Create application (worker by default)'
-- Build configurations
+- Create application (Worker by default)
+- Build settings
 
 ```sh
-# 💡 Remember that these commands are shell-level, not package manager level (meaning `bun run` is needed for package.json scripts)
 # Build command:
 bun run vike build
+
 # Deploy command:
-npx wrangler deploy # this is default
+npx wrangler deploy
+
+# Root directory (if monorepo):
+cloudflare-workers
+
+# Build env var:
+BUN_VERSION=1.3.9
 ```
+
+### Known Troubleshooting
+
+<details>
+<summary> workerd mismatch: Expected "2025-12-17" but got "workerd 2026-02-19" </summary>
+
+Fix:
+
+```sh
+bun add @cloudflare/vite-plugin@^1.25.2
+bun install
+```
+
+Then commit `package.json` + `bun.lock`, clear Cloudflare dependency cache, and retry deploy.
+
+</details>
+
+<details>
+<summary> esbuild mismatch: Expected "0.27.0" but got "0.27.3" </summary>
+
+Fix:
+
+```sh
+bun add -d esbuild@0.27.3
+bun install
+```
+
+Ensure `overrides.esbuild = "0.27.3"`, then commit `package.json` + `bun.lock`, clear dependency cache, and retry deploy.
+
+</details>
