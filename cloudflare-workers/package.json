@@ -26,6 +26,7 @@
     "vite-tsconfig-paths": "^6.1.1"
   },
   "dependencies": {
+    "@cloudflare/vite-plugin": "^1.25.2",
     "@photonjs/cloudflare": "^0.1.13",
     "@photonjs/hono": "^0.1.12",
     "hono": "^4.12.1",
