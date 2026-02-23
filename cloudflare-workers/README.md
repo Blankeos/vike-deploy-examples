@@ -30,7 +30,19 @@ bun add @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu --optional
 + "build": "vike build",
 ```
 
-- Added `wrangler.jsonc` [(see)](/wrangler.jsonc)
+- Added `wrangler.jsonc` [(see)](/wrangler.jsonc) - VERY IMPORTANT
+
+```jsonc
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "compatibility_date": "2026-01-20", // Make sure this matches your Settings > Runtime > Compatibility Date
+  "name": "vike-deploy-examples", // I think this can be anything
+  "main": "virtual:photon:cloudflare:server-entry",
+  // Only required if your app (or one of your libraries) uses a Node.js API
+  "compatibility_flags": ["nodejs_compat"],
+}
+```
+
 - Gitignored `.wrangler/`
 - Good-to-know: `bun run build` creates `dist/server/wrangler.json` and `.wrangler`
 - That's it. 🎉
