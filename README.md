@@ -1,5 +1,7 @@
 # 💎 Vike Deploy Examples
 
+![banner](./banner.webp)
+
 This repo demonstrates the deployability of Vike template across different hosting providers with what I consider 'essentials' in a Vike app (Same feature parities w/ NextJS, SolidStart, SvelteKit, etc.)
 
 Treat this as a learn-by-example repo of the **vike.dev Deploy docs**
@@ -8,7 +10,7 @@ It specifically uses [solid-hop](https://github.com/blankeos/solid-hop). In orde
 
 - [x] README.md - contains a **miniguide** of:
   - 1. **Changes since template** - What's different since a fresh template + useful things to know i.e. is `dev` and `build` and `preview` any different?
-  - 2. **Platform Notes**Notes when deploying on the platform
+  - 2. **Platform Notes** - Notes when deploying on the platform
 
 ### The examples
 
