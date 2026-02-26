@@ -3,6 +3,6 @@
   "compatibility_date": "2026-01-20",
   "name": "vike-deploy-examples",
   "main": "virtual:photon:cloudflare:server-entry",
-  // Only required if your app (or one of your libraries) uses a Node.js API
+  // Only required if your app (or one of your libraries) uses a Node.js API, generally you want this.
   "compatibility_flags": ["nodejs_compat"],
 }

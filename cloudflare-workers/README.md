@@ -7,13 +7,17 @@ Reference: https://vike.dev/cloudflare-pages
 - Install
 
 ```sh
-bun add wrangler @photonjs/cloudflare @cloudflare/vite-plugin
+bun add @photonjs/cloudflare # This is usually the only thing you need
+
+# Optionally:
+
+# I got a lot more stable installs by also pinning the version here
+bun add wrangler @cloudflare/vite-plugin
+
+# Install esbuild specifically to avoid version mismatches in CI/build environments
 bun add -d esbuild@0.27.3
-```
 
-- Install rollup linux bindings (if you're on macOS or Windows)
-
-```sh
+# Add as optional dependency... Install rollup linux bindings (if you're on macOS or Windows, since CF is technically on Linux at build)
 bun add --optional @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu
 ```
 
@@ -27,8 +31,18 @@ bun add --optional @rollup/rollup-linux-x64-gnu @rolldown/binding-linux-x64-gnu
 + "build": "vike build",
 ```
 
-- Added `wrangler.jsonc` [(see)](/wrangler.jsonc)
-- Keep Runtime settings in dashboard matching `wrangler.jsonc` (`compatibility_date`, `compatibility_flags`)
+- Write your `wrangler.jsonc` [(see)](/wrangler.jsonc)
+- Make sure Runtime settings in dashboard matches `wrangler.jsonc` (`compatibility_date`, `compatibility_flags`)
+- Important: use `target: "node"` in dev, `"auto"` in production (cold-start race workaround for `@photonjs/cloudflare`):
+  ```diff
+  export default {
+    extends: [config, vikePhoton],
+    photon: {
+  +    target: process.env.NODE_ENV === "development" ? "node" : "auto",
+      server: "src/server/server.ts",
+    },
+  } satisfies Config
+  ```
 - Keep `esbuild` pinned for stable CI installs:
 
 ```json
@@ -52,11 +66,8 @@ bun run vike build
 # Deploy command:
 npx wrangler deploy
 
-# Root directory (if monorepo):
-cloudflare-workers
-
-# Build env var:
-BUN_VERSION=1.3.9
+# Root directory (if mono repo):
+<subfolder/path>
 ```
 
 ### Known Troubleshooting
